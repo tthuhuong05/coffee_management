@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}My Restaurant{% endblock %}</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7f6; /* Màu nền sáng, dễ nhìn */
+      margin: 0;
+      padding: 0;
+      color: #333; /* Màu chữ tối để dễ đọc */
+    }
+
+    .header {
+      background-color: #f1f1f1; /* Màu nền sáng nhẹ nhàng cho header */
+      color: #333;
+      padding: 10px 0;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar {
+      background-color: #ffffff; /* Nền sáng cho navbar */
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+    }
+
+    .navbar-nav .nav-link {
+      color: #555; /* Màu chữ của các liên kết */
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #4CAF50; /* Màu xanh khi hover vào các liên kết */
+    }
+
+    footer {
+      margin-top: 20px;
+      padding: 10px;
+      text-align: center;
+      background-color: #f0f0f0;
+      border-top: 1px solid #ccc;
+      color: #333;
+    }
+
+    .container {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Header -->
+  <div class="header">
+    <h1>Welcome to My Restaurant</h1>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <!-- Only show Menu for admin -->
+          {% if role == 'admin' %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('show_menu_list') }}">
+                <i class="bi bi-card-list"></i> Menu
+              </a>
+            </li>
+          {% endif %}
+
+          <!-- Only show Orders for all authenticated users -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('list_orders') }}">
+              <i class="bi bi-basket-fill"></i> Orders
+            </a>
+          </li>
+
+          <!-- Only show Users for admin -->
+          {% if role == 'admin' %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('user_list') }}">
+                <i class="bi bi-people-fill"></i> Users
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+        <div class="d-flex align-items-center">
+          {% if username %}
+            <span class="me-3 fw-bold text-muted">
+              <i class="bi bi-person-circle"></i> {{ username }} - {{ role }}
+            </span>
+            <a href="{{ url_for('logout') }}" class="btn btn-outline-secondary">
+              <i class="bi bi-box-arrow-right"></i> Logout
+            </a>
+          {% else %}
+            <a href="{{ url_for('login') }}" class="btn btn-outline-primary me-2">
+              <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+            <a href="{{ url_for('register') }}" class="btn btn-outline-success">
+              <i class="bi bi-person-plus-fill"></i> Register
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    {% block content %}<!-- Các template con sẽ chèn nội dung vào đây -->{% endblock %}
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 My Restaurant. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+</html>

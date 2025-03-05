@@ -1,0 +1,7 @@
+{% if username and role %}
+  <p>{{ username }}</p>
+  <p>- {{ role }}</p>
+  <button>Logout</button>
+{% else %}
+  <p>Welcome, Guest</p>
+{% endif %}

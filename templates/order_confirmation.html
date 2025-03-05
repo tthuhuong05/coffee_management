@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Order Confirmation
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="mb-4">Order Confirmation</h1>
+
+    <p><strong>Name:</strong> {{ name }}</p>
+    <p><strong>Quantity:</strong> {{ quantity }}</p>
+    <p><strong>Total Price:</strong> ${{ "%.2f"|format(total_price) }}</p>
+
+    <p>Your order has been placed successfully!</p>
+  </div>
+{% endblock %}

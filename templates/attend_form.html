@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %} Create Attendant {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h2 class="mb-0">Create Attendant</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('store_attendant') }}">
+                <!-- Name Field -->
+                <div class="mb-3">
+                    <label for="name" class="form-label fw-bold">Name</label>
+                    <input type="text" 
+                           class="form-control rounded-pill px-3" 
+                           id="name" 
+                           name="name" 
+                           placeholder="Enter full name" 
+                           required>
+                </div>
+                <!-- Phone Field -->
+                <div class="mb-3">
+                    <label for="phone" class="form-label fw-bold">Phone</label>
+                    <input type="text" 
+                           class="form-control rounded-pill px-3" 
+                           id="phone" 
+                           name="phone" 
+                           placeholder="Enter phone number" 
+                           required>
+                </div>
+                <!-- Role Field -->
+                <div class="mb-3">
+                    <label for="role" class="form-label fw-bold">Role</label>
+                    <select class="form-select rounded-pill px-3" 
+                            id="role" 
+                            name="role" 
+                            required>
+                        <option value="" disabled selected>Select a role</option>
+                        <option value="staff">Staff</option>
+                        <option value="bartender">Bartender</option>
+                        <option value="waiter">Waiter</option>
+                    </select>
+                </div>
+                <!-- Work Days Field -->
+                <div class="mb-3">
+                    <label for="work_days" class="form-label fw-bold">Work Days</label>
+                    <input type="text" 
+                           class="form-control rounded-pill px-3" 
+                           id="work_days" 
+                           name="work_days" 
+                           placeholder="e.g., Monday, Wednesday" 
+                           required>
+                </div>
+                <!-- Buttons -->
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{{ url_for('show_attendant_list') }}" 
+                       class="btn btn-outline-secondary px-4 shadow-sm">
+                        <i class="bi bi-arrow-left"></i> Cancel
+                    </a>
+                    <button type="submit" 
+                            class="btn btn-primary btn-lg px-5 rounded-pill shadow-sm">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

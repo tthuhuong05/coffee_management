@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="header">
+    <h1>CAM BƠ Garden</h1>
+    <p>Số 6, ngõ 84 Việt Bắc | 0868149956</p>
+</div>
+<div class="menu">
+    <a href="{{ url_for('category', category='coffee') }}">COFFEE</a>
+    <a href="{{ url_for('category', category='juice') }}">NƯỚC ÉP</a>
+    <a href="{{ url_for('category', category='tea') }}">TRÀ</a>
+    <a href="{{ url_for('about_us') }}">ABOUT US</a>
+    <a href="{{ url_for('contact') }}">CONTACT</a>
+</div>
+
+<div class="container py-4">
+    <div class="row g-4"> <!-- Row bao quanh tất cả sản phẩm -->
+        <div class="col-md-4"> <!-- Mỗi cột chiếm 1/3 hàng -->
+            <div class="card">
+                <img src="{{ url_for('static', filename='denda.jpg') }}" class="card-img-top" alt="ĐEN ĐÁ" style="width:100%; height:300px; object-fit:cover;">
+                <div class="card-body text-center">
+                    <h5 class="DEN DA" style="color:black;">ĐEN ĐÁ</h5>
+                    <p class="card-text text-success font-weight-bold">38.000VND</p>
+                    <button class="btn btn-primary buy-now" data-item-name="ĐEN ĐÁ" data-item-price="38000">Buy now</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='nauda.jpg') }}" class="card-img-top" alt="NÂU ĐÁ" style="width:100%; height:300px; object-fit:cover;">
+                <div class="card-body text-center">
+                    <h5 class="NAU DA" style="color:black">NÂU ĐÁ</h5>
+                    <p class="card-text text-success font-weight-bold">30.000VND</p>
+                    <button class="btn btn-primary buy-now" data-item-name="NÂU ĐÁ" data-item-price="30000">Buy now</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='bacxiu.jpg') }}" class="card-img-top" alt="BẠC XỈU" style="width:100%; height:300px; object-fit:cover;">
+                <div class="card-body text-center">
+                    <h5 class="BAC XIU" style="color:black">BẠC XỈU</h5>
+                    <p class="card-text text-success font-weight-bold">35.000VND</p>
+                    <button class="btn btn-primary buy-now" data-item-name="BẠC XỈU" data-item-price="35000">Buy now</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='caphetrungmuoi.jpg') }}" class="card-img-top" alt="CÀ PHÊ TRỨNG MUỐI" style="width:100%; height:300px; object-fit:cover;">
+                <div class="card-body text-center">
+                    <h5 class="CÀ PHÊ TRỨNG MUỐI" style="color:black">CÀ PHÊ TRỨNG MUỐI</h5>
+                    <p class="card-text text-success font-weight-bold">38.000VND</p>
+                    <button class="btn btn-primary buy-now" data-item-name="NƯƠC ÉP CAM" data-item-price="38000">Buy now</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='caphecotdua.jpg') }}" class="card-img-top" alt="CÀ PHÊ CỐT DỪA" style="width:100%; height:300px; object-fit:cover;">
+                <div class="card-body text-center">
+                    <h5 class="CA PHE COT DUA" style="color:black">CÀ PHÊ CỐT DỪA</h5>
+                    <p class="card-text text-success font-weight-bold">40.000VND</p>
+                    <button class="btn btn-primary buy-now" data-item-name="CÀ PHÊ CỐT DỪA" data-item-price="40000">Buy now</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='cacaonuong.jpg') }}" class="card-img-top" alt="CACAO NƯỚNG" style="width:100%; height:300px; object-fit:cover;">
+                <div class="card-body text-center">
+                    <h5 class="CA CAO NUONG" style="color:black">CACAO NƯỚNG</h5>
+                    <p class="card-text text-success font-weight-bold">40.000VND</p>
+                    <button class="btn btn-primary buy-now" data-item-name="CÀ PHÊ CỐT DỪA" data-item-price="40000">Buy now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="order-details" style="display: none; padding: 10px; border: 1px solid black; background-color: white;">
+    <p id="item-name"></p>
+    <p id="item-quantity"></p>
+    <p id="total-price"></p>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".buy-now");
+
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                const itemName = this.getAttribute("data-item-name");
+                const itemPrice = parseInt(this.getAttribute("data-item-price"));
+                const quantity = 1; // Giả định số lượng là 1
+
+                // Gửi yêu cầu POST đến server Flask
+                fetch('/buy', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        item_name: itemName,
+                        item_price: itemPrice,
+                        quantity: quantity
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(`Order successful!\nItem: ${data.item_name}\nQuantity: ${data.quantity}\nTotal Price: ${data.total_price.toLocaleString()} VND`);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to place order. Please try again.');
+                });
+            });
+        });
+    });
+</script>
+<footer>
+    &copy; 2024 Cam Bo Garden. All Rights Reserved.
+</footer>
+{% endblock %}

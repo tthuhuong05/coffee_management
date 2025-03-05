@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Restaurant Menu
+{% endblock %}
+
+{% block content %}
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAM BƠ Garden Menu</title>
+    <!-- Link to Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-success text-white">
+    <!-- Header Section -->
+    <div class="bg-success text-center py-3">
+        <h1>CAM BƠ Garden</h1>
+        <p>Số 6, ngõ 84 Việt Bắc | 0868149956</p>
+    </div>
+
+    <!-- Menu Section -->
+    <div class="bg-white text-center py-3 shadow-sm">
+        <a href="{{ url_for('category', category='coffee') }}" class="mx-3 text-dark text-decoration-none">COFFEE</a>
+        <a href="{{ url_for('category', category='juice') }}" class="mx-3 text-dark text-decoration-none">NƯỚC ÉP</a>
+        <a href="{{ url_for('category', category='tea') }}" class="mx-3 text-dark text-decoration-none">TRÀ</a>
+        <a href="{{ url_for('about_us') }}" class="mx-3 text-dark text-decoration-none">ABOUT US</a>
+        <a href="{{ url_for('contact') }}" class="mx-3 text-dark text-decoration-none">CONTACT</a>
+    </div>
+
+    <!-- Banner Section -->
+    <div class="text-center py-4 bg-success">
+      <img src="{{ url_for('static', filename='CamBobanner.jpg') }}" alt="CAM BƠ Garden Banner" class="img-fluid">
+    </div>
+    
+    <!-- Promo Section -->
+    <div class="text-center py-4 bg-success">
+        <h2>FREESHIP DÙ CHỈ 1 LY</h2>
+        <p>Use code: FREESHIP2025</p>
+        <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Promo Image" class="img-fluid" style="width: 400px">
+    </div>
+
+    <!-- Products Section -->
+    <div class="container py-4">
+        <div class="row g-4"> <!-- Row bao quanh tất cả sản phẩm -->
+            <div class="col-md-4"> <!-- Mỗi cột chiếm 1/3 hàng -->
+                <div class="card">
+                    <img src="{{ url_for('static', filename='denda.jpg') }}" class="card-img-top" alt="ĐEN ĐÁ" style="width:100%; height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="DEN DA" style="color:black;">ĐEN ĐÁ</h5>
+                        <p class="card-text text-success font-weight-bold">38.000VND</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='nauda.jpg') }}" class="card-img-top" alt="NÂU ĐÁ" style="width:100%; height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="NAU DA" style="color:black">NÂU ĐÁ</h5>
+                        <p class="card-text text-success font-weight-bold">30.000VND</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='bacxiu.jpg') }}" class="card-img-top" alt="BẠC XỈU" style="width:100%; height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="BAC XIU" style="color:black">BẠC XỈU</h5>
+                        <p class="card-text text-success font-weight-bold">35.000VND</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='nuoccam.jpg') }}" class="card-img-top" alt="NƯỚC ÉP CAM" style="width:100%; height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="NUOC EP CAM" style="color:black">NƯỚC ÉP CAM</h5>
+                        <p class="card-text text-success font-weight-bold">38.000VND</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='tradao.jpg') }}" class="card-img-top" alt="TRÀ ĐÀO" style="width:100%; height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="TRA DAO" style="color:black">TRÀ ĐÀO</h5>
+                        <p class="card-text text-success font-weight-bold">30.000VND</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='tradau.jpg') }}" class="card-img-top" alt="TRÀ DÂU" style="width:100%; height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="TRA DAU" style="color:black">TRÀ DÂU</h5>
+                        <p class="card-text text-success font-weight-bold">45.000VND</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='caphecotdua.jpg') }}" class="card-img-top" alt="CÀ PHÊ CỐT DỪA" style="width:100%; height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="CA PHE COT DUA" style="color:black">CÀ PHÊ CỐT DỪA</h5>
+                        <p class="card-text text-success font-weight-bold">40.000VND</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='travai.jpg') }}" class="card-img-top" alt="TRÀ VẢI" style="width:100%; height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="TRA VAI" style="color:black">TRÀ VẢI</h5>
+                        <p class="card-text text-success font-weight-bold">35.000VND</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='traxoai.jpg') }}" class="card-img-top" alt="TRÀ XOÀI" style="width:100%; height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="TRA XOAI" style="color:black">TRÀ XOÀI</h5>
+                        <p class="card-text text-success font-weight-bold">38.000VND</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='caphetrungmuoi.jpg') }}" class="card-img-top" alt="CÀ PHÊ TRỨNG MUỐI" style="width:100%; height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="CÀ PHÊ TRỨNG MUỐI" style="color:black">CÀ PHÊ TRỨNG MUỐI</h5>
+                        <p class="card-text text-success font-weight-bold">40.000VND</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='sinhtobosua.jpg') }}" class="card-img-top" alt="SINH TỐ BƠ" style="width:100%; height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="SINH TỐ BƠ SỮA" style="color:black">SINH TỐ BƠ SỮA</h5>
+                        <p class="card-text text-success font-weight-bold">45.000VND</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add the rest of the products similarly -->
+
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2024 Cam Bo Garden. All Rights Reserved.
+    </footer>
+
+    <!-- Link to Bootstrap 5 JS (Optional, if needed for Bootstrap components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

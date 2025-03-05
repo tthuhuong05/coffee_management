@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Buy Now - {{ item.name }}
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="mb-4">Place Your Order for {{ item.name }}</h1>
+
+    <form action="{{ url_for('buy_now', item_id=item.id) }}" method="POST">
+      <!-- Name Field -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Your Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Enter your name"
+          required
+        >
+      </div>
+
+      <!-- Quantity Field -->
+      <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input
+          type="number"
+          class="form-control"
+          id="quantity"
+          name="quantity"
+          value="1"
+          min="1"
+          required
+        >
+      </div>
+
+      <!-- Price Field (hidden) -->
+      <input type="hidden" name="price" value="{{ item.price }}">
+
+      <button type="submit" class="btn btn-primary">Confirm Order</button>
+    </form>
+  </div>
+{% endblock %}

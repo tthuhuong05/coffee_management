@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block content %}
+<style>
+  /* Áp dụng background hình ảnh cho toàn bộ trang */
+  body {
+      background-image: url("/static/CamBoGarden.jpg");/* Đường dẫn hình ảnh 
+      background-size: cover; /* Tự động căn chỉnh kích thước hình ảnh phù hợp */
+      background-position: center; /* Đặt hình ảnh ở giữa */
+      background-repeat: no-repeat; /* Không lặp lại hình ảnh */
+      font-family: Arial, sans-serif; /* Font chữ dễ đọc */
+      color: #fff; /* Màu chữ trắng để tương phản tốt */
+  }
+
+  h1 {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.5); /* Nền tối mờ cho tiêu đề */
+      border-radius: 10px; /* Bo góc mềm mại */
+  }
+
+  /* Để khoảng cách hợp lý xung quanh nội dung */
+  .content {
+      padding: 40px;
+      text-align: center;
+  }
+</style>
+  <h1 class="mb-4">Welcome to the Home Page</h1>
+ {% endblock %}

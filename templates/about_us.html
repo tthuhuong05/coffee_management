@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="header">
+    <h1>CAM BƠ Garden</h1>
+    <p>Số 6, ngõ 84 Việt Bắc | 0868149956</p>
+</div>
+<div class="menu">
+    <a href="{{ url_for('category', category='coffee') }}">COFFEE</a>
+    <a href="{{ url_for('category', category='juice') }}">NƯỚC ÉP</a>
+    <a href="{{ url_for('category', category='tea') }}">TRÀ</a>
+    <a href="{{ url_for('about_us') }}">ABOUT US</a>
+    <a href="{{ url_for('contact') }}">CONTACT</a>
+</div>
+<div class="content" style="background-color: white; padding: 20px; margin-top: 20px;">
+    <h2>About Us</h2>
+    <p>Welcome to CAM BƠ Garden! We are a coffee shop located at Số 6, ngõ 84 Việt Bắc. Our mission is to provide high-quality drinks and a cozy atmosphere for our customers. Whether you're here to enjoy a cup of coffee or simply relax, we strive to make every visit a pleasant experience.</p>
+</div>
+<footer>
+    &copy; 2024 Cam Bo Garden. All Rights Reserved.
+</footer>
+{% endblock %}

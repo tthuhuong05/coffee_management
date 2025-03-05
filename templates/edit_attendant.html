@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %} Edit Attendant {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-info text-white text-center">
+      <h2 class="mb-0">Edit Attendant</h2>
+    </div>
+    <div class="card-body">
+      <form action="{{ url_for('update_attendant', attendant_id=attendant.id) }}" method="POST">
+        <!-- Name -->
+        <div class="mb-4">
+          <label for="name" class="form-label fw-bold">Name</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="name" 
+            name="name" 
+            value="{{ attendant.name }}" 
+            placeholder="Enter full name" 
+            required
+          >
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-4">
+          <label for="phone" class="form-label fw-bold">Phone</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="phone" 
+            name="phone" 
+            value="{{ attendant.phone }}" 
+            placeholder="Enter phone number" 
+            required
+          >
+        </div>
+
+        <!-- Role -->
+        <div class="mb-4">
+          <label for="role" class="form-label fw-bold">Role</label>
+          <select 
+            class="form-select" 
+            id="role" 
+            name="role" 
+            required
+          >
+            <option value="bartender" {% if attendant.role == "bartender" %}selected{% endif %}>Bartender</option>
+            <option value="staff" {% if attendant.role == "staff" %}selected{% endif %}>Staff</option>
+            <option value="waiter" {% if attendant.role == "waiter" %}selected{% endif %}>Waiter</option>
+          </select>
+        </div>
+
+        <!-- Work Days -->
+        <div class="mb-4">
+          <label for="work_days" class="form-label fw-bold">Work Days</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="work_days" 
+            name="work_days" 
+            value="{{ attendant.work_days }}" 
+            placeholder="e.g., Monday, Wednesday" 
+            required
+          >
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-end gap-3">
+          <button type="submit" class="btn btn-success btn-lg">
+            <i class="bi bi-check-circle"></i> Save
+          </button>
+          <a href="{{ url_for('show_attendant_list') }}" class="btn btn-secondary btn-lg">
+            <i class="bi bi-x-circle"></i> Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

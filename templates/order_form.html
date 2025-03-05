@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin | {% if order %}Edit{% else %}Create{% endif %} Order
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <!-- Header Section -->
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow-sm border-0 rounded-4">
+        <!-- Card Header -->
+        <div class="card-header bg-primary text-white text-center rounded-top-4">
+          <h3 class="mb-0">{% if order %}Edit{% else %}Create{% endif %} Order</h3>
+        </div>
+        
+        <!-- Card Body -->
+        <div class="card-body bg-light p-4">
+          <form method="POST" action="{% if order %}{{ url_for('update_order', order_id=order.id) }}{% else %}{{ url_for('store_order') }}{% endif %}">
+            <!-- Customer Name -->
+            <div class="form-floating mb-3">
+              <input 
+                type="text" 
+                class="form-control shadow-sm" 
+                id="customer_name" 
+                name="customer_name" 
+                placeholder="Customer Name" 
+                value="{{ order.customer_name if order else '' }}" 
+                required>
+              <label for="customer_name" class="text-secondary">Customer Name</label>
+            </div>
+            
+            <!-- Items -->
+            <div class="form-floating mb-3">
+              <textarea 
+                class="form-control shadow-sm" 
+                id="items" 
+                name="items" 
+                placeholder="Items" 
+                rows="3" 
+                required>{{ order.items if order else '' }}</textarea>
+              <label for="items" class="text-secondary">Items</label>
+            </div>
+            
+            <!-- Quantity -->
+            <div class="form-floating mb-3">
+              <input 
+                type="number" 
+                class="form-control shadow-sm" 
+                id="quantity" 
+                name="quantity" 
+                placeholder="Quantity" 
+                value="{{ order.quantity if order else '' }}" 
+                required>
+              <label for="quantity" class="text-secondary">Quantity</label>
+            </div>
+            
+            <!-- Price -->
+            <div class="form-floating mb-4">
+              <input 
+                type="number" 
+                class="form-control shadow-sm" 
+                id="price" 
+                name="price" 
+                placeholder="Price" 
+                step="0.01" 
+                value="{{ order.price if order else '' }}" 
+                required>
+              <label for="price" class="text-secondary">Price</label>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-success shadow-sm px-4">
+                <i class="bi bi-save"></i> {% if order %}Update{% else %}Create{% endif %}
+              </button>
+              <a href="{{ url_for('list_orders') }}" class="btn btn-secondary shadow-sm px-4">
+                <i class="bi bi-arrow-left"></i> Cancel
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
